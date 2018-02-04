@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
+import com.example.zpj.hardlibrary.HardControl;
+
 public class MainActivity extends AppCompatActivity {
     private boolean ledon = false;
     Button button_1 = null;
@@ -26,11 +28,13 @@ public class MainActivity extends AppCompatActivity {
                     // Put some meat on the sandwich
                     Toast.makeText(com.example.zpj.app_w_1.MainActivity.this, "led1_on",
                             Toast.LENGTH_SHORT).show();
+                    HardControl.ledCtrl(0, 1);
                 }
                 else {
                     // Remove the meat
                     Toast.makeText(com.example.zpj.app_w_1.MainActivity.this, "led1_off",
                             Toast.LENGTH_SHORT).show();
+                    HardControl.ledCtrl(0, 0);
                 }
                 break;
             case R.id.checkBox2:
@@ -38,11 +42,13 @@ public class MainActivity extends AppCompatActivity {
                     // Cheese me
                     Toast.makeText(com.example.zpj.app_w_1.MainActivity.this, "led2_on",
                             Toast.LENGTH_SHORT).show();
+                    HardControl.ledCtrl(1, 1);
                 }
                 else {
                     // I'm lactose intolerant
                     Toast.makeText(com.example.zpj.app_w_1.MainActivity.this, "led2_off",
                             Toast.LENGTH_SHORT).show();
+                    HardControl.ledCtrl(1, 0);
                 }
                 break;
             case R.id.checkBox3:
@@ -50,11 +56,13 @@ public class MainActivity extends AppCompatActivity {
                     // Cheese me
                     Toast.makeText(com.example.zpj.app_w_1.MainActivity.this, "led3_on",
                             Toast.LENGTH_SHORT).show();
+                    HardControl.ledCtrl(2, 1);
                 }
                 else {
                     // I'm lactose intolerant
                     Toast.makeText(com.example.zpj.app_w_1.MainActivity.this, "led3_off",
                             Toast.LENGTH_SHORT).show();
+                    HardControl.ledCtrl(2, 0);
                 }
                 break;
             case R.id.checkBox4:
@@ -62,11 +70,13 @@ public class MainActivity extends AppCompatActivity {
                     // Cheese me
                     Toast.makeText(com.example.zpj.app_w_1.MainActivity.this, "led4_on",
                             Toast.LENGTH_SHORT).show();
+                    HardControl.ledCtrl(3, 1);
                 }
                 else {
                     // I'm lactose intolerant
                     Toast.makeText(com.example.zpj.app_w_1.MainActivity.this, "led4_off",
                             Toast.LENGTH_SHORT).show();
+                    HardControl.ledCtrl(3, 0);
                 }
                 break;
 
@@ -89,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
 //        if (checkBox.isChecked()) {
 //            checkBox.setChecked(false);
 //        }
+        HardControl.ledOpen();
 
         button_1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -100,6 +111,10 @@ public class MainActivity extends AppCompatActivity {
                     checkBox_2.setChecked(true);
                     checkBox_3.setChecked(true);
                     checkBox_4.setChecked(true);
+
+                    for (int i = 0; i < 4; i++) {
+                        HardControl.ledCtrl(i, 1);//第一个i：表示第i盏灯；第二个1：表示第点亮
+                    }
                 }
                 else {
                     button_1.setText("ALL ON");
@@ -107,6 +122,10 @@ public class MainActivity extends AppCompatActivity {
                     checkBox_2.setChecked(false);
                     checkBox_3.setChecked(false);
                     checkBox_4.setChecked(false);
+
+                    for (int i = 0; i < 4; i++) {
+                        HardControl.ledCtrl(i, 0);//第一个i：表示第i盏灯；第二个1：表示第点亮
+                    }
                 }
             }
         });
